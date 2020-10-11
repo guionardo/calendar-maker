@@ -19,12 +19,6 @@ const generateBuildInfo = function () {
     })
 }
 
-generateBuildInfo()
-
-module.exports = {
-  "publicPath": publicPath,
-  "transpileDependencies": [
-    "vuetify"
-  ],
-  "lintOnSave": true
+export {
+    isProductionEnv, buildDate, publicPath, generateBuildInfo
 }

@@ -1,28 +1,20 @@
-export const monthNames = []
-export const weekNames = []
+import { environment, buildDate } from '../../build_info'
+import { log } from './log'
 
-const locale = navigator.languages ? navigator.languages[0] : navigator.language
+export const locale = navigator.languages ? navigator.languages[0] : navigator.language
 
-const Capitalize = (text, resize = 0) => text.charAt(0).toUpperCase() + text.slice(1, resize <= 0 ? 1024 : resize)
+export const buildDateLocale = new Date(buildDate).toLocaleString()
 
-const objDate = new Date()
-objDate.setDate(1)
+export const EventType = Object.freeze({
+  FeriadoNacional: Symbol(1),
+  FeriadoEstadual: Symbol(2),
+  FeriadoMunicipal: Symbol(3),
+  PontoFacultativo: Symbol(4),
+  FeriadoNacionalAntecipado: Symbol(-1),
+  FeriadoEstadualAntecipado: Symbol(-2),
+  FeriadoMunicipalAntecipado: Symbol(-3),
+  DiaConvencional: Symbol(9),
+  EventoDoUsuario: Symbol(99)
+})
 
-for (let m = 0; m < 12; m++) {
-  objDate.setMonth(m)
-  monthNames.push(Capitalize(objDate.toLocaleString(locale, { month: 'long' })))
-}
-
-objDate.setDate(1)
-objDate.setMonth(3)
-objDate.setFullYear(2020)
-
-for (let d = 5; d <= 11; d++) {
-  objDate.setDate(d)
-  weekNames.push(Capitalize(objDate.toLocaleString(locale, { weekday: 'long' })))
-}
-
-export const monthNamesAbbr = monthNames.map(x => x.charAt(0).toUpperCase() + x.slice(1, 3))
-export const weekNamesAbbr = weekNames.map(x => x.charAt(0).toUpperCase() + x.slice(1, 3))
-
-console.log('Consts', { monthNames, weekNames, monthNamesAbbr, weekNamesAbbr })
+log.debug('Consts', { environment, buildDate, EventType })
