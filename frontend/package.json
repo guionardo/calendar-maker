@@ -10,7 +10,7 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "^3.36.0",
     "vue": "^2.6.11",
     "vue-sweetalert2": "^3.0.8",
     "vuetify": "^2.3.13",
